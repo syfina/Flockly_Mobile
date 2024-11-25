@@ -89,34 +89,34 @@ fun ScheduleQuailPage() {
         }
 
         Spacer(modifier = Modifier.height(16.dp))
-
-        // Input Fields
+//
+//        // Input Fields
         ScheduleInputField(
             icon = ImageVector.vectorResource(id = R.drawable.calendar),
             label = "Tanggal",
             placeholder = "dd/mm/yy"
         )
-        Spacer(modifier = Modifier.height(8.dp))
-        ScheduleInputField(
-            icon = ImageVector.vectorResource(id = R.drawable.quail_image),
-            label = "Jam & Pengingat",
-            placeholder = "08.00"
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        ScheduleInputField(
-            icon = ImageVector.vectorResource(id = R.drawable.quail_image),
-            label = "Ulangi Jadwal",
-            placeholder = "Yes / No"
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        ScheduleInputField(
-            icon = Icons.Default.Info,
-            label = "Keterangan",
-            placeholder = "Masukan"
-        )
-
-        Spacer(modifier = Modifier.weight(1f))
-
+//        Spacer(modifier = Modifier.height(8.dp))
+//        ScheduleInputField(
+//            icon = ImageVector.vectorResource(id = R.drawable.ic_clock),
+//            label = "Jam & Pengingat",
+//            placeholder = "08.00"
+//        )
+//        Spacer(modifier = Modifier.height(8.dp))
+//        ScheduleInputField(
+//            icon = ImageVector.vectorResource(id = R.drawable.ic_repeat),
+//            label = "Ulangi Jadwal",
+//            placeholder = "Yes / No"
+//        )
+//        Spacer(modifier = Modifier.height(8.dp))
+//        ScheduleInputField(
+//            icon = Icons.Default.Info,
+//            label = "Keterangan",
+//            placeholder = "Masukan"
+//        )
+//
+//        Spacer(modifier = Modifier.weight(1f))
+//
         // Save Button
         Button(
             onClick = { /* Handle save action */ },
@@ -163,7 +163,7 @@ fun ScheduleInputField(icon: ImageVector, label: String, placeholder: String) {
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun ScheduleQuailPagePreview() {
     ScheduleQuailPage()

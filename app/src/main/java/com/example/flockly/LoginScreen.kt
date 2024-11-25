@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -55,13 +56,21 @@ fun LoginScreen(){
             painter = painterResource(id = R.drawable.flockly_logo),
             contentDescription = "Login Image", modifier = Modifier.size(200.dp)
         )
+        Box(
+            modifier = Modifier.fillMaxWidth().padding(start = 60.dp),
+            contentAlignment = Alignment.CenterStart
+        ) {
+            Text(text = "Masuk", fontSize = 20.sp, fontWeight = FontWeight.Bold,)
+            Spacer(modifier = Modifier.height(4.dp))
 
-        Text(text = "Masuk", fontSize = 20.sp, fontWeight = FontWeight.Bold)
 
-        Spacer(modifier = Modifier.height(4.dp))
-
-        Text(text = "Silahkan masuk untuk melanjutkan")
-
+        }
+        Box(
+            modifier = Modifier.fillMaxWidth().padding(start = 60.dp),
+            contentAlignment = Alignment.CenterStart
+        ) {
+            Text(text = "Silahkan masuk untuk melanjutkan")
+        }
         Spacer(modifier = Modifier.height(16.dp))
 
         OutlinedTextField(value = email, onValueChange = {
@@ -77,11 +86,16 @@ fun LoginScreen(){
         }, label = {
             Text(text = "Masukkan Kata Sandi")
         }, visualTransformation = PasswordVisualTransformation())
-        Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
-        Text(text = "Lupa Kata Sandi?", modifier = Modifier.clickable {
+        Box(
+            modifier = Modifier.fillMaxWidth().padding(end = 55.dp),
+            contentAlignment = Alignment.CenterEnd
+        ) {
+        Text(text = "Lupa Kata Sandi?", textAlign = TextAlign.End, modifier = Modifier.clickable {
 
         })
+            }
         Spacer(modifier = Modifier.height(8.dp))
 
         Button(
