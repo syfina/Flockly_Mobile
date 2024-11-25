@@ -1,9 +1,7 @@
 package com.example.agrisphere
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,17 +18,18 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -38,56 +37,46 @@ import com.example.agrisphere.ui.theme.AgrisphereTheme
 
 
 @Composable
-fun VerifScreen(){
+fun VerifScreen() {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        var otpText by remember { mutableStateOf("") }
+        val otpCount = 4
 
-        Image(painter = painterResource(id = R.drawable.flockly),
+        Image(
+            painter = painterResource(id = R.drawable.flockly),
             contentDescription = "Logo Flockly",
-            modifier = Modifier.size(200.dp))
+            modifier = Modifier.size(200.dp)
+        )
 
-        Text(text = "Verifikasi Alamat Email",
-            fontSize = 35.sp,
-            fontWeight = FontWeight.Bold)
+        Text(
+            text = "Verifikasi Alamat Email",
+            fontSize = 28.sp,
+            fontWeight = FontWeight.Bold
+        )
 
         Spacer(modifier = Modifier.height(5.dp))
 
-        Text(text = "Masukan kode verifikasi dari alamat email anda, " +
-                "silahkan periksa email anda.")
+        Text(
+            text = "Masukan kode verifikasi dari alamat email anda, silahkan periksa email anda.",
+            textAlign = TextAlign.Center
+        )
 
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(40.dp))
 
-    }
-}
-
-@Composable
-fun OtpTextField(
-    modifier: Modifier = Modifier,
-    otpText: String,
-    otpCount: Int = 4,
-    onOtpTextChange: (String, Boolean) -> Unit
-) {
-    Column(
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        LaunchedEffect(Unit) {
-            if (otpText.length > otpCount) {
-                throw IllegalArgumentException("Kode OTP tidak boleh lebih dari $otpCount karakter")
-            }
-        }
-
+        // OTP Text Field
         BasicTextField(
-            modifier = modifier,
-            value = TextFieldValue(otpText, selection = TextRange(otpText.length)),
-            onValueChange = {
-                if (it.text.length <= otpCount) {
-                    onOtpTextChange.invoke(it.text, it.text.length == otpCount)
+            modifier = Modifier,
+            value = otpText,
+            onValueChange = { newText ->
+                if (newText.length <= otpCount) {
+                    otpText = newText
                 }
             },
+
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword),
             decorationBox = {
                 Row(horizontalArrangement = Arrangement.Center) {
@@ -102,25 +91,19 @@ fun OtpTextField(
             }
         )
 
-        Spacer(modifier = Modifier.height(4.dp))
-
-        Text(text = "Sisa waktu (60 Detik)",
-            textAlign = TextAlign.End)
+        Spacer(modifier = Modifier.height(40.dp))
 
         Button(
             onClick = {},
             modifier = Modifier
-                .clickable {}
                 .width(200.dp)
-                .background(color = colorResource(id = R.color.color1)) // Sets the background color
-                .padding(2.dp)
         ) {
             Text(text = "Verifikasi")
         }
 
         Row {
-            Text(text = "Belum Menerima Kode Verifikasi?")
-            Text(text = "Kirim Ulang Kode", color = colorResource(id = R.color.color1))
+            Text(text = "Belum Menerima Kode Verifikasi?", fontSize = 13.sp)
+            Text(text = "Kirim Ulang Kode", color = colorResource(id = R.color.color1), fontSize = 13.sp)
         }
     }
 }
@@ -130,29 +113,27 @@ private fun CharView(
     index: Int,
     text: String
 ) {
-
     val char = when {
-        index == text.length -> "0"
-        index > text.length -> ""
-        else -> text[index].toString()
+        index < text.length -> text[index].toString()
+        else -> ""
     }
 
     Text(
         modifier = Modifier
-            .width(40.dp)
-            .border(1.dp, color = Color.Gray, shape = RoundedCornerShape(8.dp))
-            .padding(2.dp),
+            .width(50.dp)
+            .border(2.dp, color = Color.Gray, shape = RoundedCornerShape(8.dp))
+            .padding(12.dp),
         text = char,
         style = MaterialTheme.typography.headlineMedium,
         textAlign = TextAlign.Center
     )
 }
 
-
-//Preview Section
+// Preview Section
 @Preview(showBackground = true)
 @Composable
 fun VerifScreenPreview() {
     AgrisphereTheme {
         VerifScreen()
+    }
 }
