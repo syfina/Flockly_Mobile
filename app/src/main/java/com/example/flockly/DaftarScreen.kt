@@ -4,12 +4,14 @@ import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -48,16 +50,22 @@ fun DaftarScreen(){
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
-            painter = painterResource(id = R.drawable.flockly_daftar),
+            painter = painterResource(id = R.drawable.daftar),
             contentDescription = "Login Image", modifier = Modifier.size(200.dp)
         )
-
-        Text(text = "Daftar", fontSize = 20.sp, fontWeight = FontWeight.Bold)
-
-        Spacer(modifier = Modifier.height(4.dp))
-
-        Text(text = "Silahkan Daftar untuk melanjutkan")
-
+        Box(
+            modifier = Modifier.fillMaxWidth().padding(start = 60.dp),
+            contentAlignment = Alignment.CenterStart
+        ) {
+            Text(text = "Daftar", fontSize = 20.sp, fontWeight = FontWeight.Bold,)
+            Spacer(modifier = Modifier.height(4.dp))
+        }
+        Box(
+            modifier = Modifier.fillMaxWidth().padding(start = 60.dp),
+            contentAlignment = Alignment.CenterStart
+        ) {
+            Text(text = "Silahkan daftar untuk melanjutkan")
+        }
         Spacer(modifier = Modifier.height(16.dp))
 
         OutlinedTextField(value = email, onValueChange = {
@@ -86,7 +94,11 @@ fun DaftarScreen(){
         Button(
             onClick = {
                 Log.i("Credential", "Email: $email, Password: $password")
-            }
+            } , modifier = Modifier
+                .fillMaxWidth()
+                .padding(50.dp),
+            colors = ButtonDefaults.buttonColors( containerColor = Color(0xFF5F4A43) )
+
         ) {
             Text(text = "Daftar")
         }

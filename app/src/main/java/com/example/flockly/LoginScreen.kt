@@ -53,7 +53,7 @@ fun LoginScreen(){
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
-            painter = painterResource(id = R.drawable.flockly_logo),
+            painter = painterResource(id = R.drawable.login),
             contentDescription = "Login Image", modifier = Modifier.size(200.dp)
         )
         Box(
@@ -104,7 +104,7 @@ fun LoginScreen(){
             }, modifier = Modifier
                         .fillMaxWidth()
                         .padding(50.dp),
-            colors = ButtonDefaults.buttonColors( containerColor = Color(0xFF9C8062) )
+            colors = ButtonDefaults.buttonColors( containerColor = Color(0xFF5F4A43) )
 
         ) {
             Text(text = "Masuk")
